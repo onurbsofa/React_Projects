@@ -27,6 +27,19 @@ const FollowMouse = () => {
     };
   },[enabled]);// cada vez que se cambie el valor de enable se ejecuta el efecto
   
+  // [] -> solo se ejecuta una vez cuando se monta el componente
+  // [enabled] -> se ejecuta cuando cambia enabled y cuando se monta el componente
+  // undefined -> se ejecuta cada vez que se renderiza el componente
+
+  //chnage body className
+  useEffect(() => {
+    document.body.classList.toggle("no-cursor", enabled);
+
+    //clean up 
+    return () => {
+      document.body.classList.remove("no-cursor");
+    }
+  }, [enabled]);
   return (
     <>
        <div style={{
